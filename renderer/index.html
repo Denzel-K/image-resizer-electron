@@ -4,68 +4,113 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
-    http-equiv="Content-Security-Policy"
-    content="script-src 'self' 'unsafe-inline'"
-  />
+      http-equiv="Content-Security-Policy"
+      content="script-src 'self' 'unsafe-inline'"
+    />
     <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap"
-    rel="stylesheet"
-  />
-  <link rel="stylesheet" href="css/style.css" />
-  <script src="js/renderer.js" defer></script>
-    <title>ImageResizer</title>
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/sidebar.css" />
+    <link rel="stylesheet" href="css/home.css" />
+    <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css" />
+    <script src="js/sidebar.js" defer></script>
+    <title>PixelCraft Studio - Home</title>
   </head>
-  <body class="bg-teal-700">
-    <div
-      class="max-w-xl m-auto h-screen flex flex-col align-center justify-center"
-    >
-      <div class="flex flex-col w-full items-center justify-center bg-grey-lighter">
-        <label
-          class="w-64 flex flex-col items-center px-4 py-7 bg-white text-gray-500 rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:text-teal-800"
-        >
-          <img src="./images/logo.svg" width="32" />
-          <span class="mt-2 leading-normal">Select an image to resize</span>
-          <input id="img" type="file" class="hidden" />
-        </label>
+  <body>
+    <div class="app-container">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div class="sidebar-header">
+          <img src="./images/logo.svg" alt="PixelCraft Studio" />
+          <h3>PixelCraft Studio</h3>
+        </div>
+        <div class="sidebar-menu">
+          <ul>
+            <li>
+              <a href="index.html" class="active">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+              </a>
+            </li>
+            <li>
+              <a href="resize.html">
+                <i class="fas fa-crop-alt"></i>
+                <span>Resize</span>
+              </a>
+            </li>
+            <li>
+              <a href="batch.html">
+                <i class="fas fa-layer-group"></i>
+                <span>Batch Process</span>
+              </a>
+            </li>
+            <li>
+              <a href="history.html">
+                <i class="fas fa-history"></i>
+                <span>History</span>
+              </a>
+            </li>
+            <li>
+              <a href="settings.html">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
 
-      <!-- Form -->
-      <form id="img-form" class="hidden">
-        <div class="mt-6">
-          <label class="mt-1 block text-white text-center w-80 m-auto py-3 shadow-sm border-gray-300 rounded-md">Width</label>
-          <input
-            type="number"
-            name="width"
-            id="width"
-            class="mt-1 block w-80 m-auto p-3 shadow-sm border-gray-300 rounded-md"
-            placeholder="Width"
-          />
+      <!-- Content -->
+      <div class="content-container">
+        <div class="home-container">
+          <div class="card home-card">
+            <h1 class="home-title section-title centered">Welcome to PixelCraft Studio</h1>
+            <p class="home-subtitle">
+              Your all-in-one desktop solution for image processing and optimization
+            </p>
+
+            <div class="feature-grid">
+              <div class="feature-item feature-resize">
+                <div class="feature-icon">
+                  <i class="fas fa-crop-alt"></i>
+                </div>
+                <h3 class="feature-title">Resize Images</h3>
+                <p class="feature-description">Maintain aspect ratio with smart resizing</p>
+              </div>
+
+              <div class="feature-item feature-compress">
+                <div class="feature-icon">
+                  <i class="fas fa-compress-alt"></i>
+                </div>
+                <h3 class="feature-title">Compress Files</h3>
+                <p class="feature-description">Optimize images without losing quality</p>
+              </div>
+
+              <div class="feature-item feature-convert">
+                <div class="feature-icon">
+                  <i class="fas fa-exchange-alt"></i>
+                </div>
+                <h3 class="feature-title">Convert Formats</h3>
+                <p class="feature-description">Change between different image formats</p>
+              </div>
+            </div>
+
+            <div class="action-buttons">
+              <a href="resize.html" class="btn btn-primary">
+                <i class="fas fa-crop-alt"></i>
+                Start Processing
+              </a>
+
+              <a href="batch.html" class="btn btn-secondary">
+                <i class="fas fa-layer-group"></i>
+                Batch Processing
+              </a>
+            </div>
+          </div>
         </div>
-
-        <div class="mt-4">
-          <label class="mt-1 block text-white text-center w-80 m-auto py-3 shadow-sm border-gray-300 rounded-md">Height</label>
-          <input
-            type="number"
-            name="height"
-            id="height"
-            class="mt-1 block w-80 m-auto p-3 shadow-sm border-gray-300 rounded-md"
-            placeholder="Height"
-          />
-        </div>
-
-        <!-- Button -->
-        <div class="mt-6">
-          <button
-            type="submit"
-            class="w-80 m-auto flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-teal-500 hover:bg-teal-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-          >
-            Resize
-          </button>
-
-      </form>
-
-      <p class="text-white text-lg text-center font-mono mt-6"><strong>File: </strong><span id="filename"></span></p>
-      <p class="text-white text-lg text-center font-mono mt-2"><strong>Output: </strong><span id="output-path"></span></p>
+      </div>
     </div>
   </body>
 </html>

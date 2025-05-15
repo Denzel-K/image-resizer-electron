@@ -12,9 +12,39 @@ contextBridge.exposeInMainWorld('path', {
 });
 
 contextBridge.exposeInMainWorld('ipcRenderer', {
-  send: (channel, data) => ipcRenderer.send(channel, data),
-  on: (channel, func) =>
-    ipcRenderer.on(channel, (event, ...args) => func(...args)),
+  send: (channel, data) => {
+    // Whitelist channels
+    const validChannels = [
+      'image:resize',
+      'history:get',
+      'history:clear',
+      'settings:get',
+      'settings:save',
+      'settings:reset',
+      'settings:select-output-path',
+      'open:folder',
+      'open:file',
+      'batch:process'
+    ];
+    if (validChannels.includes(channel)) {
+      ipcRenderer.send(channel, data);
+    }
+  },
+  on: (channel, func) => {
+    const validChannels = [
+      'image:done',
+      'image:error',
+      'history:response',
+      'settings:response',
+      'settings:output-path-selected',
+      'batch:progress',
+      'batch:complete',
+      'batch:error'
+    ];
+    if (validChannels.includes(channel)) {
+      ipcRenderer.on(channel, (event, ...args) => func(...args));
+    }
+  },
 });
 
 contextBridge.exposeInMainWorld('Toastify', {

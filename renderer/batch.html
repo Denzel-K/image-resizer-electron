@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="script-src 'self' 'unsafe-inline'"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/sidebar.css" />
+    <link rel="stylesheet" href="css/forms.css" />
+    <link rel="stylesheet" href="css/batch.css" />
+    <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css" />
+    <script src="js/sidebar.js" defer></script>
+    <script src="js/batch.js" defer></script>
+    <title>PixelCraft Studio - Batch Processing</title>
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div class="sidebar-header">
+          <img src="./images/logo.svg" alt="PixelCraft Studio" />
+          <h3>PixelCraft Studio</h3>
+        </div>
+        <div class="sidebar-menu">
+          <ul>
+            <li>
+              <a href="index.html">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+              </a>
+            </li>
+            <li>
+              <a href="resize.html">
+                <i class="fas fa-crop-alt"></i>
+                <span>Resize</span>
+              </a>
+            </li>
+            <li>
+              <a href="batch.html" class="active">
+                <i class="fas fa-layer-group"></i>
+                <span>Batch Process</span>
+              </a>
+            </li>
+            <li>
+              <a href="history.html">
+                <i class="fas fa-history"></i>
+                <span>History</span>
+              </a>
+            </li>
+            <li>
+              <a href="settings.html">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div class="content-container">
+        <div class="batch-container">
+          <div class="card batch-card">
+            <h1 class="batch-title section-title">
+              <i class="fas fa-layer-group"></i>
+              Batch Image Processing
+            </h1>
+
+            <div class="batch-section">
+              <div class="section-header">
+                <i class="fas fa-images"></i>
+                <h2 class="section-title">Select Images</h2>
+              </div>
+
+              <div class="file-selection">
+                <label class="batch-upload-area" for="batch-images">
+                  <i class="fas fa-images batch-upload-icon"></i>
+                  <h3 class="batch-upload-title">SELECT MULTIPLE IMAGES</h3>
+                  <p class="batch-upload-subtitle">Click or drag and drop files here</p>
+                  <input id="batch-images" type="file" multiple class="hidden" />
+                </label>
+              </div>
+
+              <div id="selected-files-container" class="hidden">
+                <div class="selected-files">
+                  <div class="files-header">
+                    <h3>Selected Files</h3>
+                    <span class="files-count" id="file-count">0 files</span>
+                  </div>
+                  <div id="selected-files" class="files-list">
+                    <!-- Files will be listed here -->
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="batch-section">
+              <div class="section-header">
+                <i class="fas fa-sliders-h"></i>
+                <h2 class="section-title">Processing Options</h2>
+              </div>
+
+              <div class="processing-options">
+                <div class="form-group">
+                  <label for="batch-operation">Operation</label>
+                  <select id="batch-operation">
+                    <option value="resize">Resize</option>
+                    <option value="compress">Compress</option>
+                    <option value="convert">Convert Format</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="batch-output-format">Output Format</label>
+                  <select id="batch-output-format">
+                    <option value="same">Same as source</option>
+                    <option value="jpg">JPG</option>
+                    <option value="png">PNG</option>
+                    <option value="webp">WebP</option>
+                    <option value="gif">GIF</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Resize Options -->
+              <div id="resize-options">
+                <div class="processing-options">
+                  <div class="form-group">
+                    <label for="batch-width">Width (px)</label>
+                    <input type="number" id="batch-width" placeholder="Enter width" />
+                    <span class="form-hint">Leave empty to maintain aspect ratio</span>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="batch-height">Height (px)</label>
+                    <input type="number" id="batch-height" placeholder="Enter height" />
+                    <span class="form-hint">Leave empty to maintain aspect ratio</span>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="checkbox-wrapper">
+                    <input type="checkbox" id="maintain-aspect-ratio" checked />
+                    <span>Maintain aspect ratio</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Compression Options -->
+              <div id="compression-options" class="hidden compression-slider">
+                <div class="form-group">
+                  <label for="compression-level">Compression Level</label>
+                  <div class="slider-labels">
+                    <span class="slider-label">Low Quality (Smaller File)</span>
+                    <span class="slider-label">High Quality (Larger File)</span>
+                  </div>
+                  <input type="range" id="compression-level" min="0" max="100" value="80" />
+                  <div class="slider-value">
+                    <span id="compression-value">80%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="batch-section">
+              <div class="section-header">
+                <i class="fas fa-folder-open"></i>
+                <h2 class="section-title">Output Settings</h2>
+              </div>
+
+              <div class="form-group">
+                <label for="batch-output-path">Output Directory</label>
+                <div class="input-group">
+                  <input type="text" id="batch-output-path" class="form-control" readonly />
+                  <button id="batch-change-output" class="btn btn-primary">
+                    <i class="fas fa-folder-open"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="checkbox-wrapper">
+                  <input type="checkbox" id="overwrite-existing" />
+                  <span>Overwrite existing files</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="batch-actions">
+              <button id="start-batch" class="btn btn-primary start-batch-btn" disabled>
+                <i class="fas fa-play"></i>
+                Start Batch Processing
+              </button>
+            </div>
+
+            <!-- Progress Section -->
+            <div id="progress-section" class="progress-section hidden">
+              <div class="progress-header">
+                <h3 class="progress-title">Processing Progress</h3>
+                <span id="progress-percentage">0%</span>
+              </div>
+              <div class="progress-bar-container">
+                <div id="progress-bar" class="progress-bar" style="width: 0%"></div>
+              </div>
+              <div class="progress-info">
+                <span id="progress-status">Waiting to start...</span>
+                <span id="progress-count">0/0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

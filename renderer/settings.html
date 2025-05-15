@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="script-src 'self' 'unsafe-inline'"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/sidebar.css" />
+    <link rel="stylesheet" href="css/forms.css" />
+    <link rel="stylesheet" href="css/settings.css" />
+    <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css" />
+    <script src="js/sidebar.js" defer></script>
+    <script src="js/settings.js" defer></script>
+    <title>PixelCraft Studio - Settings</title>
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div class="sidebar-header">
+          <img src="./images/logo.svg" alt="PixelCraft Studio" />
+          <h3>PixelCraft Studio</h3>
+        </div>
+        <div class="sidebar-menu">
+          <ul>
+            <li>
+              <a href="index.html">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+              </a>
+            </li>
+            <li>
+              <a href="resize.html">
+                <i class="fas fa-crop-alt"></i>
+                <span>Resize</span>
+              </a>
+            </li>
+            <li>
+              <a href="batch.html">
+                <i class="fas fa-layer-group"></i>
+                <span>Batch Process</span>
+              </a>
+            </li>
+            <li>
+              <a href="history.html">
+                <i class="fas fa-history"></i>
+                <span>History</span>
+              </a>
+            </li>
+            <li>
+              <a href="settings.html" class="active">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div class="content-container">
+        <div class="settings-container">
+          <div class="card settings-card">
+            <h1 class="settings-title section-title">
+              <i class="fas fa-cog"></i>
+              Settings
+            </h1>
+
+            <form id="settings-form">
+              <div class="form-group">
+                <label class="form-label" for="output-path-input">
+                  <i class="fas fa-folder"></i>
+                  Output Directory
+                </label>
+                <div class="input-group">
+                  <input
+                    id="output-path-input"
+                    type="text"
+                    class="form-control"
+                    readonly
+                  />
+                  <button
+                    id="change-output-path"
+                    type="button"
+                    class="btn btn-primary"
+                  >
+                    <i class="fas fa-edit"></i>
+                  </button>
+                </div>
+                <span class="form-hint">Default: ~/pixelcraft-studio</span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="default-format">
+                  <i class="fas fa-image"></i>
+                  Default Image Format
+                </label>
+                <div class="select-wrapper">
+                  <select
+                    id="default-format"
+                    class="form-control"
+                  >
+                    <option value="same">Same as source</option>
+                    <option value="png">PNG</option>
+                    <option value="jpeg">JPEG</option>
+                    <option value="gif">GIF</option>
+                    <option value="webp">WebP</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="settings-option-card">
+                <label class="checkbox-wrapper">
+                  <input type="checkbox" id="save-history" checked />
+                  <span>
+                    <i class="fas fa-history mr-2" style="color: #0d9488;"></i>
+                    Save resize history
+                  </span>
+                </label>
+              </div>
+
+              <div class="form-actions">
+                <button
+                  id="save-settings"
+                  type="submit"
+                  class="btn btn-primary"
+                >
+                  <i class="fas fa-save"></i>
+                  Save Settings
+                </button>
+                <button
+                  id="reset-settings"
+                  type="button"
+                  class="btn btn-neutral"
+                >
+                  <i class="fas fa-undo"></i>
+                  Reset to Default
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div class="card">
+            <h2 class="about-title">
+              <i class="fas fa-info-circle"></i>
+              About
+            </h2>
+            <div class="about-section">
+              <p class="about-version">PixelCraft Studio v1.0.0</p>
+              <p class="about-description">A comprehensive tool for image processing, resizing, compression and format conversion.</p>
+              <p class="about-footer">
+                <i class="fab fa-electron"></i>
+                Made with Electron
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

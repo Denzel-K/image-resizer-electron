@@ -4,6 +4,12 @@ const outputPath = document.querySelector('#output-path');
 const filename = document.querySelector('#filename');
 const heightInput = document.querySelector('#height');
 const widthInput = document.querySelector('#width');
+const fileInfo = document.querySelector('#file-info');
+
+// Global variable to store original image dimensions
+let originalWidth = 0;
+let originalHeight = 0;
+let aspectRatio = 0;
 
 // Load image and show form
 function loadImage(e) {
@@ -19,20 +25,43 @@ function loadImage(e) {
   const image = new Image();
   image.src = URL.createObjectURL(file);
   image.onload = function () {
-    widthInput.value = this.width;
-    heightInput.value = this.height;
+    originalWidth = this.width;
+    originalHeight = this.height;
+    aspectRatio = originalWidth / originalHeight;
+
+    widthInput.value = originalWidth;
+    heightInput.value = originalHeight;
   };
 
   // Show form, image name and output path
-  form.style.display = 'block';
+  form.classList.remove('hidden');
+  fileInfo.classList.remove('hidden');
   filename.innerHTML = img.files[0].name;
-  outputPath.innerText = path.join(os.homedir(), 'imageresizer');
+  outputPath.innerText = path.join(os.homedir(), 'pixelcraft-studio');
 }
 
 // Make sure file is an image
 function isFileImage(file) {
   const acceptedImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
   return file && acceptedImageTypes.includes(file['type']);
+}
+
+// Maintain aspect ratio when width changes
+function updateHeight() {
+  if (aspectRatio > 0 && widthInput.value.trim() !== '') {
+    const newWidth = parseInt(widthInput.value);
+    const newHeight = Math.round(newWidth / aspectRatio);
+    heightInput.value = newHeight;
+  }
+}
+
+// Maintain aspect ratio when height changes
+function updateWidth() {
+  if (aspectRatio > 0 && heightInput.value.trim() !== '') {
+    const newHeight = parseInt(heightInput.value);
+    const newWidth = Math.round(newHeight * aspectRatio);
+    widthInput.value = newWidth;
+  }
 }
 
 // Resize image
@@ -44,9 +73,17 @@ function resizeImage(e) {
     return;
   }
 
-  if (widthInput.value === '' || heightInput.value === '') {
-    alertError('Please enter a width and height');
+  // Allow resizing with just one dimension specified
+  if (widthInput.value === '' && heightInput.value === '') {
+    alertError('Please enter at least one dimension (width or height)');
     return;
+  }
+
+  // If only one dimension is provided, calculate the other
+  if (widthInput.value === '' && heightInput.value !== '') {
+    updateWidth();
+  } else if (heightInput.value === '' && widthInput.value !== '') {
+    updateHeight();
   }
 
   // Electron adds a bunch of extra properties to the file object including the path
@@ -64,6 +101,11 @@ function resizeImage(e) {
 // When done, show message
 ipcRenderer.on('image:done', () =>
   alertSuccess(`Image resized to ${heightInput.value} x ${widthInput.value}`)
+);
+
+// Handle errors
+ipcRenderer.on('image:error', (error) =>
+  alertError(`Error: ${error}`)
 );
 
 function alertSuccess(message) {
@@ -96,3 +138,7 @@ function alertError(message) {
 img.addEventListener('change', loadImage);
 // Form submit listener
 form.addEventListener('submit', resizeImage);
+// Width input listener for maintaining aspect ratio
+widthInput.addEventListener('input', updateHeight);
+// Height input listener for maintaining aspect ratio
+heightInput.addEventListener('input', updateWidth);

@@ -1,0 +1,123 @@
+/* Home Page Styles for PixelCraft Studio */
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 20px;
+}
+
+.home-card {
+  max-width: 900px;
+  width: 100%;
+  text-align: center;
+}
+
+.home-title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #0f172a;
+}
+
+.home-subtitle {
+  font-size: 1.25rem;
+  margin-bottom: 3rem;
+  color: #475569;
+}
+
+/* Feature grid */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+@media (max-width: 768px) {
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.feature-item {
+  text-align: center;
+  padding: 1.5rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.feature-item:hover {
+  transform: translateY(-5px);
+}
+
+.feature-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+}
+
+.feature-icon i {
+  font-size: 1.75rem;
+}
+
+.feature-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: #0f172a;
+}
+
+.feature-description {
+  font-size: 0.95rem;
+  color: #64748b;
+}
+
+/* Feature colors */
+.feature-resize .feature-icon {
+  background-color: rgba(13, 148, 136, 0.1);
+}
+
+.feature-resize .feature-icon i {
+  color: #0d9488;
+}
+
+.feature-compress .feature-icon {
+  background-color: rgba(99, 102, 241, 0.1);
+}
+
+.feature-compress .feature-icon i {
+  color: #6366f1;
+}
+
+.feature-convert .feature-icon {
+  background-color: rgba(168, 85, 247, 0.1);
+}
+
+.feature-convert .feature-icon i {
+  color: #a855f7;
+}
+
+/* Action buttons */
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+@media (max-width: 480px) {
+  .action-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .action-buttons .btn {
+    width: 100%;
+  }
+}

@@ -1,0 +1,251 @@
+/* Batch Processing Page Styles for PixelCraft Studio */
+
+.batch-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.batch-card {
+  margin-bottom: 2rem;
+}
+
+.batch-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.batch-title i {
+  margin-right: 0.75rem;
+  color: #0d9488;
+  font-size: 1.5rem;
+}
+
+/* Section styles */
+.batch-section {
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.batch-section:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.section-header i {
+  margin-right: 0.75rem;
+  color: #0d9488;
+  font-size: 1.25rem;
+}
+
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+/* File selection */
+.file-selection {
+  margin-bottom: 1.5rem;
+}
+
+.batch-upload-area {
+  width: 100%;
+  border: 3px dashed #e2e8f0;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: white;
+  margin-bottom: 1.5rem;
+}
+
+.batch-upload-area:hover {
+  border-color: #0d9488;
+  background-color: rgba(13, 148, 136, 0.02);
+  transform: translateY(-5px);
+}
+
+.batch-upload-icon {
+  font-size: 3rem;
+  color: #0d9488;
+  margin-bottom: 1.25rem;
+}
+
+.batch-upload-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #1e293b;
+}
+
+.batch-upload-subtitle {
+  font-size: 0.9rem;
+  color: #64748b;
+  text-align: center;
+}
+
+/* Selected files */
+.selected-files {
+  background-color: #f8fafc;
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid #e2e8f0;
+}
+
+.files-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.files-count {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35em 0.65em;
+  font-size: 0.75em;
+  font-weight: 600;
+  line-height: 1;
+  color: white;
+  background-color: #0d9488;
+  border-radius: 0.375rem;
+}
+
+.files-list {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.file-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.file-item:last-child {
+  border-bottom: none;
+}
+
+.file-name {
+  display: flex;
+  align-items: center;
+}
+
+.file-icon {
+  color: #0d9488;
+  margin-right: 0.75rem;
+}
+
+.file-size {
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+/* Processing options */
+.processing-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .processing-options {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Compression slider */
+.compression-slider {
+  margin-top: 1.5rem;
+}
+
+.slider-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.slider-label {
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.slider-value {
+  text-align: center;
+  margin-top: 0.75rem;
+  font-weight: 500;
+  color: #0d9488;
+}
+
+/* Progress section */
+.progress-section {
+  background-color: #f8fafc;
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid #e2e8f0;
+  margin-top: 2rem;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.progress-title {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.progress-bar-container {
+  width: 100%;
+  height: 8px;
+  background-color: #e2e8f0;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #0d9488;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+/* Action buttons */
+.batch-actions {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.start-batch-btn {
+  min-width: 200px;
+}
